@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: productd
+    password: product
+    url: jdbc:mysql://localhost:3307/products
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        order-created:
+          destination: order-created
+          contentType: application/json
+  rsocket:
+    server:
+      port: 7002
+#  main:
+#    web-application-type: none
+logging:
+  level:
+    org.springframework : TRACE
